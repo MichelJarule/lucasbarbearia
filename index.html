@@ -131,6 +131,7 @@
               <div class="booking-cancel-actions">
                 <button class="primary-button wide" type="button" data-open-booking>Agendar meu horário</button>
                 <button class="secondary-button wide" type="button" data-open-booking>Ver horários</button>
+                <button class="secondary-button wide" type="button" data-open-cancel>Cancelar pelo telefone</button>
               </div>
             </section>
 
@@ -620,6 +621,23 @@
           <div class="summary-box" id="public-booking-summary">Selecione serviço, data e horário.</div>
           <button class="primary-button wide" type="submit">Confirmar agendamento</button>
         </form>
+      </div>
+    </dialog>
+
+    <dialog id="cancel-booking-dialog" class="modal">
+      <div class="modal-card compact">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Cancelamento</p>
+            <h2>Cancelar agendamento</h2>
+          </div>
+          <button class="icon-close" type="button" data-close-dialog aria-label="Fechar">×</button>
+        </div>
+        <form id="public-cancel-form" class="form-card">
+          <label>Telefone usado no agendamento <input name="phone" inputmode="tel" autocomplete="tel" required minlength="10" placeholder="(11) 99999-9999"></label>
+          <button class="primary-button wide" type="submit">Buscar agendamentos</button>
+        </form>
+        <div id="public-cancel-results" class="stack-list cancel-results"></div>
       </div>
     </dialog>
 

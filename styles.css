@@ -1530,6 +1530,17 @@ label {
   gap: 12px;
 }
 
+.cancel-results {
+  margin-top: 14px;
+}
+
+.cancel-result-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .appointments-list { margin-top: 14px; }
 
 .list-item,
@@ -2065,12 +2076,43 @@ label {
   }
   .bar-visual,
   .chart-months { gap: 10px; }
-  .calendar-weekdays { display: none; }
-  .calendar-grid { grid-template-columns: 1fr; }
-  .calendar-day.empty { display: none; }
+  .calendar-weekdays,
+  .calendar-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+  }
+  .calendar-weekdays {
+    display: grid;
+    font-size: 0.58rem;
+  }
+  .calendar-day {
+    min-height: clamp(42px, 11vw, 64px);
+    padding: 5px;
+    border-radius: 6px;
+  }
+  .calendar-day.empty { display: block; }
+  .calendar-number {
+    margin-bottom: 0;
+    font-size: 0.72rem;
+  }
+  .calendar-slots {
+    margin-top: 4px;
+  }
+  .calendar-slot {
+    min-height: 5px;
+    padding: 0;
+    overflow: hidden;
+    color: transparent;
+    font-size: 0;
+  }
+  .calendar-slot span,
+  .calendar-more {
+    display: none;
+  }
   .panel-header,
   .item-top,
   .appointment-top,
+  .cancel-result-item,
   .section-heading.split { flex-direction: column; align-items: stretch; }
   .public-service-grid,
   .public-service-grid.four-grid,

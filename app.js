@@ -108,6 +108,9 @@ function cacheElements() {
   elements.publicDateInput = elements.publicBookingForm.elements.date;
   elements.publicTimeSelect = elements.publicBookingForm.elements.time;
   elements.publicBookingSummary = document.querySelector("#public-booking-summary");
+  elements.cancelBookingDialog = document.querySelector("#cancel-booking-dialog");
+  elements.publicCancelForm = document.querySelector("#public-cancel-form");
+  elements.publicCancelResults = document.querySelector("#public-cancel-results");
   elements.loginDialog = document.querySelector("#login-dialog");
   elements.loginForm = document.querySelector("#login-form");
   elements.loginOpen = document.querySelector("#login-open");
@@ -199,6 +202,10 @@ function bindEvents() {
     button.addEventListener("click", openPublicBooking);
   });
 
+  document.querySelectorAll("[data-open-cancel]").forEach((button) => {
+    button.addEventListener("click", openPublicCancel);
+  });
+
   document.querySelectorAll("[data-open-login]").forEach((button) => {
     button.addEventListener("click", () => {
       if (currentUser) showView("dashboard", { skipAuth: true });
@@ -232,6 +239,7 @@ function bindEvents() {
 
   elements.bookingForm.addEventListener("submit", handleBookingSubmit);
   elements.publicBookingForm.addEventListener("submit", handlePublicBookingSubmit);
+  elements.publicCancelForm.addEventListener("submit", handlePublicCancelSearch);
   elements.publicServiceSelect.addEventListener("change", () => { updatePublicTimeOptions(); updatePublicBookingSummary(); });
   elements.publicDateInput.addEventListener("change", () => { updatePublicTimeOptions(); updatePublicBookingSummary(); });
   elements.publicTimeSelect.addEventListener("change", updatePublicBookingSummary);
@@ -329,6 +337,12 @@ function openPublicBooking() {
   updatePublicTimeOptions();
   updatePublicBookingSummary();
   if (!elements.bookingDialog.open) elements.bookingDialog.showModal();
+}
+
+function openPublicCancel() {
+  elements.publicCancelForm.reset();
+  elements.publicCancelResults.innerHTML = `<div class="summary-box">Digite o telefone usado no agendamento.</div>`;
+  if (!elements.cancelBookingDialog.open) elements.cancelBookingDialog.showModal();
 }
 
 function bindAuthEvents() {
@@ -809,6 +823,50 @@ function handlePublicBookingSubmit(event) {
   updatePublicBookingSummary();
   if (elements.bookingDialog.open) elements.bookingDialog.close();
   showToast(`Agendamento confirmado. Código: ${appointment.id}`);
+}
+
+function handlePublicCancelSearch(event) {
+  event.preventDefault();
+  const phone = normalizePhone(new FormData(elements.publicCancelForm).get("phone"));
+  renderPublicCancelResults(phone);
+}
+
+function renderPublicCancelResults(phone) {
+  if (phone.length < 10) {
+    elements.publicCancelResults.innerHTML = `<div class="summary-box">Informe um telefone válido.</div>`;
+    return;
+  }
+
+  const matches = loadAppointments()
+    .filter((appointment) => appointment.status === "active" && normalizePhone(appointment.phone) === phone)
+    .sort((a, b) => `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`));
+
+  elements.publicCancelResults.innerHTML = matches.length ? matches.map((appointment) => `
+    <article class="list-item cancel-result-item">
+      <div>
+        <h3>${escapeHtml(appointment.serviceName)}</h3>
+        <p>${formatDate(appointment.date)} às ${appointment.time}</p>
+        <p>${escapeHtml(appointment.name)} - ${formatPhone(appointment.phone)}</p>
+      </div>
+      <button class="mini-button danger" type="button" data-public-cancel="${appointment.id}">Cancelar</button>
+    </article>
+  `).join("") : `<div class="summary-box">Nenhum agendamento ativo encontrado para esse telefone.</div>`;
+
+  elements.publicCancelResults.querySelectorAll("[data-public-cancel]").forEach((button) => {
+    button.addEventListener("click", () => cancelPublicAppointment(button.dataset.publicCancel, phone));
+  });
+}
+
+function cancelPublicAppointment(id, phone) {
+  const appointments = loadAppointments();
+  const appointment = appointments.find((item) => item.id === id && item.status === "active" && normalizePhone(item.phone) === phone);
+  if (!appointment) return showToast("Agendamento não encontrado para esse telefone.");
+  appointment.status = "cancelled";
+  appointment.cancelledAt = new Date().toISOString();
+  saveAppointments(appointments);
+  renderAll();
+  renderPublicCancelResults(phone);
+  showToast("Agendamento cancelado.");
 }
 
 function createAppointmentFromForm(formData) {
