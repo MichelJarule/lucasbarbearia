@@ -26,7 +26,7 @@ const defaultServices = [
 ];
 
 const defaultPageConfig = {
-  brandName: "Lucas Barbearia",
+  brandName: "Lucasbarbearia",
   logo: "logo-lucas-barbearia.jpeg",
   menuSobre: "Sobre Nós",
   menuServicos: "Serviços",
@@ -38,7 +38,7 @@ const defaultPageConfig = {
   heroText: "Descubra o cuidado que você merece em um ambiente pensado para estilo, tranquilidade e renovação.",
   aboutEyebrow: "Sobre nós",
   aboutTitle: "Tradição, técnica e atenção em cada detalhe.",
-  aboutText: "A Lucas Barbearia nasceu para ser mais que um lugar de corte. Aqui o atendimento é direto, o ambiente é acolhedor e cada serviço é feito com calma, precisão e respeito ao estilo de cada cliente.",
+  aboutText: "A Lucasbarbearia nasceu para ser mais que um lugar de corte. Aqui o atendimento é direto, o ambiente é acolhedor e cada serviço é feito com calma, precisão e respeito ao estilo de cada cliente.",
   aboutPointOneTitle: "Produtos de qualidade",
   aboutPointOneText: "Selecionados para acabamento e durabilidade.",
   aboutPointTwoTitle: "Tempo para você",
@@ -776,8 +776,8 @@ function fillForm(form, values) {
 }
 
 function brandNameHtml(name) {
-  const words = String(name || "Lucas Barbearia").trim().split(/\s+/);
-  if (words.length < 2) return escapeHtml(words[0] || "Lucas Barbearia");
+  const words = String(name || "Lucasbarbearia").trim().split(/\s+/);
+  if (words.length < 2) return escapeHtml(words[0] || "Lucasbarbearia");
   const strong = words.pop();
   return `${escapeHtml(words.join(" "))} <strong>${escapeHtml(strong)}</strong>`;
 }
@@ -1546,7 +1546,12 @@ function loadServices() {
 }
 function saveServices() { saveJson(SERVICES_KEY, services); }
 function loadPageConfig() {
-  return { ...defaultPageConfig, ...loadObject(PAGE_CONFIG_KEY) };
+  const config = { ...defaultPageConfig, ...loadObject(PAGE_CONFIG_KEY) };
+  if (config.brandName === "Lucas Barbearia") config.brandName = "Lucasbarbearia";
+  if (String(config.aboutText || "").includes("A Lucas Barbearia nasceu")) {
+    config.aboutText = config.aboutText.replace("A Lucas Barbearia nasceu", "A Lucasbarbearia nasceu");
+  }
+  return config;
 }
 function savePageConfig() { saveJson(PAGE_CONFIG_KEY, pageConfig); }
 
