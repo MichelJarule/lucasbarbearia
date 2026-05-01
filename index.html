@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lucas Barbearia | Gestão</title>
+    <meta name="description" content="Dashboard, agenda, clientes, estoque, PDV e financeiro da Lucas Barbearia.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="public-mode">
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#divulgacao" data-view-link="divulgacao">
+          <img class="brand-logo" src="logo-lucas-barbearia.jpeg" alt="Lucas Barbearia">
+          <span>Lucas <strong>Barbearia</strong></span>
+        </a>
+
+        <nav class="side-nav" aria-label="Menu principal">
+          <section class="nav-section" data-menu-group="principal">
+            <span class="nav-group">Principal</span>
+            <button class="nav-item active" type="button" data-view="divulgacao"><span>⌂</span>Página Inicial</button>
+            <button class="nav-item" type="button" data-view="dashboard"><span>▦</span>Dashboard</button>
+            <button class="nav-item" type="button" data-view="calendario"><span>□</span>Calendário</button>
+            <button class="nav-item" type="button" data-view="agenda"><span>▣</span>Agenda</button>
+          </section>
+          <section class="nav-section" data-menu-group="gestao">
+            <span class="nav-group">Gestão</span>
+            <button class="nav-item" type="button" data-view="servicos"><span>⌘</span>Serviços</button>
+            <button class="nav-item" type="button" data-view="estoque"><span>⬡</span>PDV/Estoque</button>
+            <button class="nav-item" type="button" data-view="financeiro"><span>$</span>Financeiro</button>
+            <button class="nav-item" type="button" data-view="configuracao"><span>⚙</span>Configuração</button>
+          </section>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button class="nav-item login-item" type="button" id="login-open"><span>↪</span>Entrar no app</button>
+          <div class="sidebar-user-card is-hidden" id="sidebar-user-card">
+            <img class="brand-logo user-card-logo" src="logo-lucas-barbearia.jpeg" alt="">
+            <div>
+              <strong id="sidebar-user-name">Usuário</strong>
+              <span id="sidebar-user-email">ADMIN</span>
+            </div>
+            <button class="logout-button" type="button" id="logout-button" aria-label="Sair do app">↪</button>
+          </div>
+        </div>
+      </aside>
+
+      <div class="main-shell">
+        <header class="topbar">
+          <div>
+            <div class="topbar-title">
+              <img class="brand-logo topbar-logo" src="logo-lucas-barbearia.jpeg" alt="Lucas Barbearia">
+              <h1 id="view-title" class="brand-gradient-text">Lucas Barbearia</h1>
+            </div>
+            <nav class="top-public-links" aria-label="Atalhos da página inicial">
+              <button class="home-link" type="button" data-public-anchor="inicio">Página Inicial</button>
+              <button type="button" data-public-anchor="sobre-nos">Sobre Nós</button>
+              <button type="button" data-public-anchor="servicos-inicial">Serviços</button>
+              <button type="button" data-public-anchor="produtos-inicial">Produtos</button>
+              <button type="button" data-public-anchor="galeria-inicial">Galeria</button>
+              <button type="button" data-public-anchor="depoimentos-inicial">Depoimentos</button>
+            </nav>
+          </div>
+          <div class="top-actions">
+            <button class="secondary-button sidebar-toggle" type="button">Menu</button>
+            <span class="date-pill">qui., 30 de abr.</span>
+            <button class="secondary-button top-login-button" type="button" data-open-login>Entrar no app</button>
+            <button class="primary-button" type="button" data-open-booking>Agendamento</button>
+          </div>
+        </header>
+
+        <main class="workspace">
+          <section class="view public-view active" id="view-divulgacao" data-title="Lucas Barbearia">
+            <section class="public-hero" id="inicio">
+              <img src="photo-1585747860715-2ba37e788b70" alt="Interior de barbearia">
+              <div class="public-hero-shade"></div>
+              <div class="public-hero-content">
+                <p class="eyebrow">Bem-vindo ao seu momento</p>
+                <h2>Uma experiência única em cuidado masculino</h2>
+                <p>Descubra o cuidado que você merece em um ambiente pensado para estilo, tranquilidade e renovação.</p>
+                <div class="public-actions">
+                  <button class="primary-button" type="button" data-open-booking>Agendar agora</button>
+                  <button class="secondary-button" type="button" data-public-anchor="servicos-inicial">Conhecer serviços</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="public-section about-section" id="sobre-nos">
+              <div class="about-copy">
+                <p class="eyebrow">Sobre nós</p>
+                <h2>Tradição, técnica e atenção em cada detalhe.</h2>
+                <p>A Lucas Barbearia nasceu para ser mais que um lugar de corte. Aqui o atendimento é direto, o ambiente é acolhedor e cada serviço é feito com calma, precisão e respeito ao estilo de cada cliente.</p>
+                <div class="about-points">
+                  <article>
+                    <strong>Produtos de qualidade</strong>
+                    <span>Selecionados para acabamento e durabilidade.</span>
+                  </article>
+                  <article>
+                    <strong>Tempo para você</strong>
+                    <span>Atendimento com horário marcado e sem pressa.</span>
+                  </article>
+                </div>
+              </div>
+              <div class="about-media">
+                <img src="photo-1503951914875-452162b0f3f1" alt="Corte masculino em barbearia">
+                <img class="floating-photo" src="photo-1516975080664-ed2fc6a32937" alt="Produtos e ambiente da barbearia">
+              </div>
+            </section>
+
+            <section class="public-section public-services" id="servicos-inicial">
+              <div class="section-heading split">
+                <div>
+                  <p class="eyebrow">Nossos serviços</p>
+                  <h2>Cuidados essenciais para realçar seu estilo</h2>
+                </div>
+                <button class="text-link ghost-button" type="button" data-view-shortcut="servicos">Ver todos</button>
+              </div>
+              <div class="public-service-grid four-grid" id="public-services-grid"></div>
+            </section>
+
+            <section class="public-section booking-cancel-section">
+              <div>
+                <p class="eyebrow">Agendamentos e cancelamentos</p>
+                <h2>Organize seu horário sem complicação.</h2>
+                <p>Agende seu atendimento, acompanhe os horários disponíveis e, se precisar, solicite o cancelamento pelo painel com código ou telefone.</p>
+              </div>
+              <div class="booking-cancel-actions">
+                <button class="primary-button wide" type="button" data-open-booking>Agendar meu horário</button>
+                <button class="secondary-button wide" type="button" data-open-booking>Ver horários</button>
+              </div>
+            </section>
+
+            <section class="public-section public-products" id="produtos-inicial">
+              <div class="section-heading split">
+                <div>
+                  <p class="eyebrow">Produtos</p>
+                  <h2>Produtos para uso pessoal</h2>
+                </div>
+              </div>
+              <div class="product-showcase-grid" id="public-products-grid"></div>
+            </section>
+
+            <section class="public-section" id="galeria-inicial">
+              <div class="section-heading split">
+                <div>
+                  <p class="eyebrow">Galeria de cortes</p>
+                  <h2>Alguns trabalhos recentes</h2>
+                </div>
+                <a class="text-link" href="https://www.instagram.com/lucas.barbearia.a.o/" target="_blank" rel="noreferrer">Ver Instagram</a>
+              </div>
+              <div class="cut-gallery">
+                <img src="photo-1503951914875-452162b0f3f1" alt="Corte masculino finalizado">
+                <img src="photo-1532710093739-9470acff878f" alt="Barbeiro trabalhando em corte">
+                <img src="photo-1585747860715-2ba37e788b70(1)" alt="Barbearia e atendimento">
+                <img src="photo-1562322140-8baeececf3df" alt="Resultado de corte com luzes">
+              </div>
+            </section>
+
+            <section class="public-section testimonials-section" id="depoimentos-inicial">
+              <div class="section-heading">
+                <p class="eyebrow">Depoimentos</p>
+                <h2>O que nossos clientes dizem</h2>
+              </div>
+              <div class="testimonial-grid" id="testimonial-grid">
+                <article class="static-testimonial">
+                  <div aria-label="5 estrelas">★★★★★</div>
+                  <p>"Atendimento pontual, corte muito bem feito e um ambiente tranquilo. Virei cliente."</p>
+                  <strong>Ricardo Mendes</strong>
+                </article>
+                <article class="static-testimonial">
+                  <div aria-label="5 estrelas">★★★★★</div>
+                  <p>"O Lucas entende exatamente o estilo que a gente procura. Barba e cabelo ficaram impecáveis."</p>
+                  <strong>André Oliveira</strong>
+                </article>
+                <article class="static-testimonial">
+                  <div aria-label="5 estrelas">★★★★★</div>
+                  <p>"Sempre sou bem atendido. O cuidado nos detalhes faz toda diferença no resultado."</p>
+                  <strong>Marcos Vinícius</strong>
+                </article>
+              </div>
+              <button class="secondary-button testimonials-more" type="button" id="show-more-testimonials">+ mais</button>
+            </section>
+
+            <section class="public-cta">
+              <img src="photo-1585747860715-2ba37e788b70" alt="Ambiente acolhedor da barbearia">
+              <div class="public-cta-shade"></div>
+              <div>
+                <h2>Pronto para renovar seu visual?</h2>
+                <p>Agende o seu horário e deixe-nos cuidar de você com a atenção que sua imagem merece.</p>
+                <button class="outline-cta" type="button" data-open-booking>Agendar meu horário</button>
+              </div>
+            </section>
+
+            <footer class="public-footer">
+              <div class="footer-brand-block">
+                <img class="brand-logo footer-logo" src="logo-lucas-barbearia.jpeg" alt="Lucas Barbearia">
+                <div>
+                  <h3>Lucas Barbearia</h3>
+                  <p>A sua experiência de cuidado, estilo e bem-estar em Guarulhos.</p>
+                  <a href="https://www.instagram.com/lucas.barbearia.a.o/" target="_blank" rel="noreferrer">Instagram</a>
+                </div>
+              </div>
+              <div>
+                <h3>Links rápidos</h3>
+                <button type="button" data-view-shortcut="divulgacao">Início</button>
+                <button type="button" data-view-shortcut="servicos">Serviços</button>
+                <button type="button" data-open-booking>Agendar</button>
+                <button type="button" data-view-shortcut="dashboard">Área restrita</button>
+              </div>
+              <div>
+                <h3>Serviços</h3>
+                <p>Corte</p>
+                <p>Barba</p>
+                <p>Corte + Sobrancelha</p>
+                <p>Luzes</p>
+              </div>
+              <div>
+                <h3>Contato</h3>
+                <p>Rua Hilários Pires de Freitas, 186<br>Jardim Fortaleza, Guarulhos - SP</p>
+                <p>(11) 96719-8368</p>
+                <p>lucas.barbearia.a.o@gmail.com</p>
+              </div>
+            </footer>
+          </section>
+
+          <section class="view" id="view-dashboard" data-title="Dashboard">
+            <div class="admin-heading">
+              <h2>Dashboard</h2>
+              <p>Visão geral da operação da barbearia</p>
+            </div>
+            <div class="metric-grid" id="dashboard-metrics"></div>
+            <div class="dashboard-grid">
+              <article class="panel wide-panel">
+                <div class="panel-header">
+                  <div>
+                    <h2>Receita Mensal</h2>
+                    <p>Últimos 7 meses</p>
+                  </div>
+                </div>
+                <div id="revenue-chart" class="line-chart"></div>
+              </article>
+              <article class="panel">
+                <div class="panel-header">
+                  <div>
+                    <h2>Serviços Mais Solicitados</h2>
+                    <p>Distribuição atual</p>
+                  </div>
+                </div>
+                <div id="service-donut" class="donut-chart"></div>
+              </article>
+            </div>
+            <article class="panel table-panel">
+              <div class="panel-header">
+                <h2>Agendamentos de Hoje</h2>
+                <button class="mini-button" type="button" data-view-shortcut="agenda">Ver todos</button>
+              </div>
+              <div id="today-table" class="admin-table"></div>
+            </article>
+          </section>
+
+          <section class="view" id="view-calendario" data-title="Calendário">
+            <div class="admin-heading">
+              <h2>Calendário</h2>
+              <p>Agenda mensal, horários ativos e cancelamentos</p>
+            </div>
+            <div class="calendar-layout">
+              <article class="panel">
+                <div class="calendar-header">
+                  <button class="mini-button" type="button" id="prev-month">‹</button>
+                  <h2 id="calendar-title">Calendário</h2>
+                  <button class="mini-button" type="button" id="next-month">›</button>
+                </div>
+                <div class="calendar-weekdays" aria-hidden="true">
+                  <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+                <div id="calendar-grid" class="calendar-grid"></div>
+              </article>
+              <button class="panel-resizer" type="button" aria-label="Ajustar largura dos quadrantes do calendário"></button>
+              <aside class="panel">
+                <div class="panel-header">
+                  <div>
+                    <p class="eyebrow">Agendados</p>
+                    <h2>Lista completa</h2>
+                  </div>
+                </div>
+                <div id="calendar-appointments" class="stack-list"></div>
+              </aside>
+            </div>
+            <article class="panel">
+              <div class="report-heading">
+                <div>
+                  <p class="eyebrow">Cancelamentos</p>
+                  <h2>Cancelamentos realizados</h2>
+                </div>
+                <strong id="cancel-count">0</strong>
+              </div>
+              <div id="cancel-list" class="cancel-list"></div>
+            </article>
+          </section>
+
+          <section class="view" id="view-servicos" data-title="Serviços">
+            <div class="admin-heading">
+              <h2>Serviços da barbearia</h2>
+              <p>Tabela atual de preços, duração e serviços oferecidos</p>
+            </div>
+            <article class="panel service-editor-panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Cadastro</p>
+                  <h2>Novo serviço</h2>
+                </div>
+              </div>
+              <form id="service-form" class="form-card">
+                <input type="hidden" name="id">
+                <div class="form-grid">
+                  <label>Serviço <input name="name" required placeholder="Ex.: Corte + Barba"></label>
+                  <label>Preço <input name="price" type="number" min="0" step="0.01" required placeholder="60,00"></label>
+                  <label>Duração (min) <input name="duration" type="number" min="1" step="1" required placeholder="60"></label>
+                  <label>Imagem
+                    <select name="image">
+                      <option value="photo-1585747860715-2ba37e788b70(1)">Corte masculino</option>
+                      <option value="photo-1532710093739-9470acff878f">Barbeiro trabalhando</option>
+                      <option value="photo-1516975080664-ed2fc6a32937">Atendimento</option>
+                      <option value="photo-1503951914875-452162b0f3f1">Corte finalizado</option>
+                      <option value="photo-1560066984-138dadb4c035">Barba</option>
+                      <option value="photo-1562322140-8baeececf3df">Luzes</option>
+                      <option value="photo-1585747860715-2ba37e788b70">Ambiente</option>
+                    </select>
+                  </label>
+                  <label class="full-field">Descrição <input name="description" required maxlength="140" placeholder="Descreva o serviço"></label>
+                  <label class="checkbox-field"><input name="featured" type="checkbox"> Principal na Página Inicial</label>
+                </div>
+                <div class="service-form-actions">
+                  <button class="primary-button" type="submit">Salvar serviço</button>
+                  <button class="secondary-button" type="reset" id="service-reset">Limpar</button>
+                </div>
+              </form>
+            </article>
+            <div id="services-grid" class="services-grid"></div>
+          </section>
+
+          <section class="view" id="view-agenda" data-title="Agenda">
+            <div class="admin-heading">
+              <h2>Agendamentos</h2>
+              <p>Cadastro e gerenciamento dos horários</p>
+            </div>
+            <div class="agenda-layout">
+              <article class="panel">
+                <div class="panel-header">
+                  <div>
+                    <p class="eyebrow">Novo horário</p>
+                    <h2>Agendar cliente</h2>
+                  </div>
+                </div>
+                <form id="booking-form" class="form-card">
+                  <div class="form-grid">
+                    <label>Nome <input name="name" autocomplete="name" required minlength="3" placeholder="Nome do cliente"></label>
+                    <label>Telefone <input name="phone" inputmode="tel" autocomplete="tel" required minlength="10" placeholder="(11) 99999-9999"></label>
+                    <label>Serviço <select name="service" required></select></label>
+                    <label>Data <input name="date" type="date" required></label>
+                    <label>Horário <select name="time" required></select></label>
+                    <label>Mensagem do cliente <input name="notes" maxlength="160" placeholder="Deixe uma observação ou mensagem"></label>
+                  </div>
+                  <div class="summary-box" id="booking-summary">Selecione serviço, data e horário.</div>
+                  <button class="primary-button wide" type="submit">Confirmar agendamento</button>
+                </form>
+              </article>
+              <button class="panel-resizer" type="button" aria-label="Ajustar largura dos quadrantes da agenda"></button>
+              <article class="panel">
+                <div class="panel-header">
+                  <div>
+                    <p class="eyebrow">Gerenciamento</p>
+                    <h2>Agenda geral</h2>
+                  </div>
+                  <button class="secondary-button" type="button" id="export-json">Exportar JSON</button>
+                </div>
+                <input id="admin-search" placeholder="Filtrar por nome, telefone ou código">
+                <select id="appointment-status-filter" aria-label="Filtrar por status">
+                  <option value="all">Todos os status</option>
+                  <option value="active">Pendentes</option>
+                  <option value="completed">Realizados</option>
+                  <option value="no-show">Ñ realizados</option>
+                  <option value="cancelled">Cancelados</option>
+                </select>
+                <div id="appointments-list" class="appointments-list"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" id="view-galeria" data-title="Galeria">
+            <div class="admin-heading split">
+              <div>
+                <h2>Trabalhos recentes</h2>
+                <p>Portfólio visual para divulgação</p>
+              </div>
+              <a class="text-link" href="https://www.instagram.com/lucas.barbearia.a.o/" target="_blank" rel="noreferrer">Ver Instagram</a>
+            </div>
+            <div class="gallery-grid">
+              <img src="photo-1503951914875-452162b0f3f1" alt="Corte masculino finalizado">
+              <img src="photo-1516975080664-ed2fc6a32937" alt="Atendimento em barbearia">
+              <img src="photo-1532710093739-9470acff878f" alt="Barbeiro trabalhando">
+              <img src="photo-1562322140-8baeececf3df" alt="Resultado de corte masculino">
+            </div>
+          </section>
+
+          <section class="view" id="view-clientes" data-title="Lista de clientes">
+            <div class="admin-heading">
+              <h2>Clientes</h2>
+              <p>Histórico gerado pelos agendamentos</p>
+            </div>
+            <article class="panel">
+              <div class="panel-header">
+                <div>
+                  <p class="eyebrow">Clientes</p>
+                  <h2>Gerado pelos agendamentos</h2>
+                </div>
+              </div>
+              <input id="client-search" placeholder="Buscar cliente ou telefone">
+              <div id="clients-list" class="stack-list"></div>
+            </article>
+          </section>
+
+          <section class="view" id="view-estoque" data-title="PDV/Estoque">
+            <div class="admin-heading">
+              <h2>PDV/Estoque</h2>
+              <p>Controle de produtos, margem e vendas</p>
+            </div>
+            <div class="stock-layout">
+              <article class="panel">
+                <div class="panel-header">
+                  <div>
+                    <p class="eyebrow">Estoque</p>
+                    <h2>Itens de uso e venda</h2>
+                  </div>
+                </div>
+                <form id="stock-form" class="form-card compact-form">
+                  <input type="hidden" name="id">
+                  <div class="form-grid">
+                    <label>Item <input name="name" required placeholder="Pomada modeladora"></label>
+                    <label>Categoria
+                      <select name="category">
+                        <option value="Estoque">Estoque</option>
+                        <option value="Venda">Venda</option>
+                      </select>
+                    </label>
+                    <label>Custo unitário <input name="cost" type="number" min="0" step="0.01" required></label>
+                    <label>Quantidade <input name="qty" type="number" min="0" step="1" required></label>
+                    <label>Margem de lucro (%) <input name="margin" type="number" min="0" step="1" required></label>
+                    <label>Imagem do produto <input name="imageFile" type="file" accept="image/*"></label>
+                  </div>
+                  <div class="summary-box" id="stock-preview">Valor final calculado automaticamente.</div>
+                  <button class="primary-button wide" type="submit">Salvar item</button>
+                </form>
+                <h3 class="stock-subtitle">Lista de Estoque</h3>
+                <div id="stock-list" class="product-grid"></div>
+              </article>
+
+              <button class="panel-resizer" type="button" aria-label="Ajustar largura dos quadrantes de estoque e PDV"></button>
+
+              <article class="panel">
+                <div class="panel-header">
+                  <div>
+                    <p class="eyebrow">PDV</p>
+                    <h2>Itens de venda</h2>
+                  </div>
+                </div>
+                <form id="sale-form" class="form-card compact-form">
+                  <label>Produto <select name="item" required></select></label>
+                  <label>Quantidade <input name="qty" type="number" min="1" step="1" value="1" required></label>
+                  <div class="summary-box" id="sale-preview">Selecione um produto.</div>
+                  <button class="primary-button wide" type="submit">Registrar venda</button>
+                </form>
+                <div id="sales-list" class="stack-list"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" id="view-financeiro" data-title="Financeiro">
+            <div class="admin-heading">
+              <h2>Financeiro</h2>
+              <p>Visão geral das receitas da barbearia</p>
+            </div>
+            <div class="metric-grid" id="finance-metrics"></div>
+            <article class="panel finance-wide-panel">
+              <div class="panel-header">
+                <div>
+                  <h2>Receita ao Longo do Tempo</h2>
+                  <p>Últimos 12 meses</p>
+                </div>
+              </div>
+              <div id="finance-chart" class="finance-line-chart"></div>
+            </article>
+            <div class="dashboard-grid">
+              <article class="panel">
+                <div class="panel-header">
+                  <div>
+                    <p class="eyebrow">Faturamento</p>
+                    <h2>Receitas computadas</h2>
+                  </div>
+                </div>
+                <div id="finance-list" class="stack-list"></div>
+              </article>
+              <article class="panel">
+                <div class="panel-header">
+                  <div>
+                    <p class="eyebrow">Composição</p>
+                    <h2>Serviços x PDV</h2>
+                  </div>
+                </div>
+                <div id="finance-bars" class="bar-chart"></div>
+              </article>
+            </div>
+          </section>
+
+          <section class="view" id="view-configuracao" data-title="Configuração">
+            <div class="admin-heading">
+              <h2>Configuração</h2>
+              <p>Ajustes gerais do app e preferências da barbearia</p>
+            </div>
+            <div class="config-layout">
+              <article class="panel">
+                <div class="panel-header">
+                  <div>
+                    <p class="eyebrow">Principal</p>
+                    <h2>Dados da empresa</h2>
+                  </div>
+                </div>
+                <form id="company-config-form" class="form-card config-form">
+                  <label>Logo marca - sidebar, página inicial e rodapé <input name="logoFile" type="file" accept="image/*"></label>
+                  <label>Nome no sidebar / Página Inicial <input name="brandName" required></label>
+                  <div class="form-grid">
+                    <label>Menu 1 <input name="menuSobre"></label>
+                    <label>Menu 2 <input name="menuServicos"></label>
+                    <label>Menu 3 <input name="menuProdutos"></label>
+                    <label>Menu 4 <input name="menuGaleria"></label>
+                    <label>Menu 5 <input name="menuDepoimentos"></label>
+                  </div>
+                  <label>Descrição do rodapé <input name="footerDescription"></label>
+                  <label>Endereço do rodapé <textarea name="footerAddress" rows="3"></textarea></label>
+                  <div class="form-grid">
+                    <label>Telefone <input name="footerPhone"></label>
+                    <label>E-mail <input name="footerEmail"></label>
+                    <label>Instagram <input name="instagram" type="url"></label>
+                    <label>Facebook <input name="facebook" type="url"></label>
+                    <label>TikTok <input name="tiktok" type="url"></label>
+                    <label>YouTube <input name="youtube" type="url"></label>
+                  </div>
+                  <button class="primary-button" type="submit">Salvar dados da empresa</button>
+                </form>
+              </article>
+
+              <article class="panel">
+                <div class="panel-header">
+                  <div>
+                    <p class="eyebrow">Principal</p>
+                    <h2>Informações da página</h2>
+                  </div>
+                </div>
+                <form id="page-config-form" class="form-card config-form">
+                  <div class="form-grid">
+                    <label>Mensagem Bem-vindo <input name="heroEyebrow"></label>
+                    <label>Título Bem-vindo <input name="heroTitle"></label>
+                  </div>
+                  <label>Texto Bem-vindo <textarea name="heroText" rows="3"></textarea></label>
+                  <div class="form-grid">
+                    <label>Sobre Nós - Chamada <input name="aboutEyebrow"></label>
+                    <label>Sobre Nós - Título <input name="aboutTitle"></label>
+                  </div>
+                  <label>Sobre Nós - Texto <textarea name="aboutText" rows="3"></textarea></label>
+                  <div class="form-grid">
+                    <label>Imagem Sobre Nós 1 <input name="aboutImageOneFile" type="file" accept="image/*"></label>
+                    <label>Imagem Sobre Nós 2 <input name="aboutImageTwoFile" type="file" accept="image/*"></label>
+                    <label>Destaque 1 <input name="aboutPointOneTitle"></label>
+                    <label>Texto destaque 1 <input name="aboutPointOneText"></label>
+                    <label>Destaque 2 <input name="aboutPointTwoTitle"></label>
+                    <label>Texto destaque 2 <input name="aboutPointTwoText"></label>
+                    <label>Nossos Serviços - Chamada <input name="servicesEyebrow"></label>
+                    <label>Nossos Serviços - Título <input name="servicesTitle"></label>
+                    <label>Depoimentos - Chamada <input name="testimonialsEyebrow"></label>
+                    <label>Depoimentos - Título <input name="testimonialsTitle"></label>
+                  </div>
+                  <div class="config-testimonials">
+                    <label>Depoimento 1 <input name="testimonialOneName" placeholder="Nome"><textarea name="testimonialOneText" rows="2" placeholder="Mensagem"></textarea></label>
+                    <label>Depoimento 2 <input name="testimonialTwoName" placeholder="Nome"><textarea name="testimonialTwoText" rows="2" placeholder="Mensagem"></textarea></label>
+                    <label>Depoimento 3 <input name="testimonialThreeName" placeholder="Nome"><textarea name="testimonialThreeText" rows="2" placeholder="Mensagem"></textarea></label>
+                  </div>
+                  <label>Última chamada antes do rodapé <input name="ctaTitle"></label>
+                  <label>Última mensagem antes do rodapé <textarea name="ctaText" rows="3"></textarea></label>
+                  <button class="primary-button" type="submit">Salvar informações da página</button>
+                </form>
+              </article>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <dialog id="booking-dialog" class="modal">
+      <div class="modal-card compact">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Agendamento</p>
+            <h2>Escolha seu horário</h2>
+          </div>
+          <button class="icon-close" type="button" data-close-dialog aria-label="Fechar">×</button>
+        </div>
+        <form id="public-booking-form" class="form-card">
+          <div class="form-grid">
+            <label>Nome <input name="name" autocomplete="name" required minlength="3" placeholder="Seu nome"></label>
+            <label>Telefone <input name="phone" inputmode="tel" autocomplete="tel" required minlength="10" placeholder="(11) 99999-9999"></label>
+            <label>Serviço <select name="service" required></select></label>
+            <label>Data <input name="date" type="date" required></label>
+            <label>Horário <select name="time" required></select></label>
+            <label>Mensagem <input name="notes" maxlength="160" placeholder="Observação opcional"></label>
+          </div>
+          <div class="summary-box" id="public-booking-summary">Selecione serviço, data e horário.</div>
+          <button class="primary-button wide" type="submit">Confirmar agendamento</button>
+        </form>
+      </div>
+    </dialog>
+
+    <dialog id="product-reserve-dialog" class="modal">
+      <div class="modal-card compact">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Reserva de produto</p>
+            <h2 id="reserve-product-title">Produto</h2>
+          </div>
+          <button class="icon-close" type="button" data-close-dialog aria-label="Fechar">×</button>
+        </div>
+        <form id="reserve-product-form" class="form-card">
+          <input type="hidden" name="item">
+          <label>Nome <input name="name" required minlength="3" placeholder="Nome do cliente"></label>
+          <label>Telefone <input name="phone" required minlength="10" inputmode="tel" placeholder="(11) 99999-9999"></label>
+          <label>Quantidade <input name="qty" type="number" min="1" step="1" value="1" required></label>
+          <div class="summary-box" id="reserve-product-summary">Selecione um produto.</div>
+          <button class="primary-button wide" type="submit">Reservar produto</button>
+        </form>
+      </div>
+    </dialog>
+
+    <dialog id="login-dialog" class="modal">
+      <div class="modal-card compact">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Acesso restrito</p>
+            <h2>Entrar no app</h2>
+          </div>
+          <button class="icon-close" type="button" data-close-dialog aria-label="Fechar">×</button>
+        </div>
+        <form id="login-form" class="form-card">
+          <label>E-mail <input name="email" type="email" autocomplete="email" required placeholder="admin@email.com"></label>
+          <label>Senha <input name="password" type="password" autocomplete="current-password" required placeholder="Senha"></label>
+          <button class="primary-button wide" type="submit">Entrar</button>
+        </form>
+      </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-storage-compat.js"></script>
+    <script src="firebase-init.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
